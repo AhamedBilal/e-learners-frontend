@@ -1,0 +1,134 @@
+<div class="conatiner mt-5">
+  <mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Basic Details</ng-template>
+        <div class="container">
+          <div class="py-3 px-5">
+            <form action="">
+              <div class="mb-3">
+                <label class="form-label">Course title</label>
+                <input type="text" placeholder="title" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Course subtitle</label>
+                <input type="text" placeholder="title" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Course description</label>
+                <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+              </div>
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Category</label>
+                  <select class="form-select" name="" id="">
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                  </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Level</label>
+                  <select class="form-select" name="" id="">
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                  </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label class="form-label">Language</label>
+                  <select class="form-select" name="" id="">
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="formFile" class="place-holder">
+                    <span class="material-icons">image</span>
+                  </label>
+                </div>
+                <div class="col-md-8">
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">
+                      Upload your course image here.
+                    </label>
+                    <input class="form-control" type="file" id="formFile">
+                    <div class="form-text">It must meet our course image quality standards to be accepted.
+                      Important guidelines: 750x422 pixels; .jpg, .jpeg,. gif, or .png. no text on the image.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-danger">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+    <!--    course content-->
+    <mat-step [stepControl]="secondFormGroup" label="Create your content">
+      <form [formGroup]="secondFormGroup">
+        <div class="card bg-light p-3">
+          <h6 class="fw-bold">Section 1</h6>
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Subheading</div>
+                Cras justo odio
+              </div>
+              <span class="badge bg-primary rounded-pill">14</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Subheading</div>
+                Cras justo odio
+              </div>
+              <span class="badge bg-primary rounded-pill">14</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">Subheading</div>
+                Cras justo odio
+              </div>
+              <span class="badge bg-primary rounded-pill">14</span>
+            </li>
+          </ul>
+          <div class="text-center p-3">
+            <button class="btn btn-secondary btn-sm" (click)="openLesson()">Add lesson</button>
+          </div>
+        </div>
+        <div class="text-center p-3">
+          <button class="btn btn-danger" (click)="openDialog()">create new section</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step>
+      <ng-template matStepLabel>Publish your course</ng-template>
+      <p>You are now done.</p>
+      <form>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label class="form-label">Pricing</label>
+            <select class="form-select" name="" id="">
+              <option value="">Free</option>
+              <option value="">19.99 USD</option>
+              <option value="">49.99 USD</option>
+              <option value="">99.99 USD</option>
+            </select>
+          </div>
+          <div>
+            <button class="btn btn-danger">Publish</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

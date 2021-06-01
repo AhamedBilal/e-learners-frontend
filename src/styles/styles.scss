@@ -1,9 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
+@import "variables";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+$theme-colors: (
+  "primary": $app-color-1,
+  "success": $app-color-2,
+  "secondary": $secondary,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark
+);
+
 @import "~bootstrap/scss/bootstrap";
 
 
+html, body {
+  height: 100%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+}
 
-.material-icons{}
+.style-font {
+  font-family: 'Pacifico', cursive;
+}
+
+.material-icons {
+}
+
+.f-c-1 {
+  color: $app-color-1;
+}
+
+.f-c-1 {
+  color: $app-color-2;
+}
+
+.f-c-3 {
+  color: $app-color-3;
+}
+
+.f-c-4 {
+  color: $app-color-4;
+}
+
+.logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 50px;
+  color: $app-color-2;
+
+  &::first-letter {
+    color: $app-color-1 !important;
+    font-size: 50px;
+    font-weight: bolder;
+  }
+}
+
+.place-holder {
+  background-color: #E1E1E1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: $app-color-2;
+  height: 200px;
+}

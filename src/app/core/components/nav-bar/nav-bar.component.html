@@ -1,1 +1,71 @@
-<p>nav-bar works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top" style="z-index: 900">
+  <div class="container-fluid">
+    <a class="navbar-brand nav-logo" href="#">E Leaner</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse dropdown-hover-all" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <div class="input-group">
+          <span class="input-group-text material-icons" id="basic-addon1">search</span>
+          <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+      </form>
+    </div>
+    <div class="d-flex gap-2 ms-auto">
+      <button class="btn btn-outline-primary d-flex align-items-center"><span class="material-icons">shopping_cart</span>
+        <span class="badge rounded-pill bg-danger text-white">1</span>
+      </button>
+      <button class="btn btn-outline-primary" type="submit">Log in</button>
+      <button class="btn btn-primary" type="submit">Sign Up</button>
+      <button class="btn logo-btn rounded-circle" (click)="isMenu = true;" cdkOverlayOrigin
+              #triggerNotification="cdkOverlayOrigin">AB</button>
+    </div>
+  </div>
+</nav>
+
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="triggerNotification"
+  [cdkConnectedOverlayOpen]="isMenu"
+  [cdkConnectedOverlayGrowAfterOpen]="true"
+  [cdkConnectedOverlayPush]="true"
+  (backdropClick)="isMenu=false"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  [cdkConnectedOverlayOffsetY]="10"
+  cdkConnectedOverlayBackdropClass="transBackdrop"
+>
+  <div class="menu border-1 shadow-sm py-2">
+    <div class="d-flex align-items-center gap-3 px-2">
+      <button class="btn logo-btn logo-btn-lg rounded-circle">AB</button>
+      <div>
+        <div>Ahamed Bilal</div>
+        <div class="small text-muted">ahamedbilalazmy@gmail.com</div>
+      </div>
+    </div>
+    <hr class="dropdown-divider">
+    <div class="menu-item px-3 py-2">My learning</div>
+    <div class="menu-item px-3 py-2">My cart</div>
+    <div class="menu-item px-3 py-2">Teach with us</div>
+    <hr class="dropdown-divider">
+    <div class="menu-item px-3 py-2">Account Settings</div>
+    <div class="menu-item px-3 py-2">Purchase History</div>
+    <hr class="dropdown-divider">
+    <div class="menu-item px-3 py-2">Public profile</div>
+    <div class="menu-item px-3 py-2">Edit profile</div>
+    <hr class="dropdown-divider">
+    <div class="menu-item px-3 py-2">Log out</div>
+    <hr class="dropdown-divider">
+  </div>
+</ng-template>

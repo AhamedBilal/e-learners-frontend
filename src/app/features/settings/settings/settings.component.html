@@ -1,0 +1,25 @@
+<div class="container py-5" >
+  <main class="border border-1">
+    <aside class="border-end border-1 d-flex flex-column flex-shrink-0 p-3 bg-light">
+      <div class="d-flex align-items-center justify-content-center flex-column">
+        <div class="profile-image mb-3">AB</div>
+        <h6 class="fw-bold text-center">Ahamed Bilal</h6>
+      </div>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a class="nav-link link-dark" routerLink="edit-profile" routerLinkActive="active">Profile</a>
+        </li>
+        <li>
+          <a class="nav-link link-dark" routerLink="edit-photo" routerLinkActive="active">Photo</a>
+        </li>
+        <li>
+          <a class="nav-link link-dark" routerLink="edit-account" routerLinkActive="active">Account</a>
+        </li>
+      </ul>
+    </aside>
+    <section class="w-100">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
+</div>

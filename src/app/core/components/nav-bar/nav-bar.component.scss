@@ -1,0 +1,53 @@
+@import "src/styles/variables";
+
+.nav-logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 24px;
+  color: $app-color-2;
+
+  &::first-letter {
+    color: $app-color-1;
+    font-size: 28px;
+    font-weight: bolder;
+  }
+}
+
+.dropdown-hover-all .dropdown-menu, .dropdown-hover > .dropdown-menu.dropend {
+  margin-left: -1px !important
+}
+
+.logo-btn {
+  background-color: $app-color-1;
+  color: white;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.menu {
+  background-color: #F8F9FA;
+  border-radius: 5px;
+}
+
+.logo-btn-lg {
+  height: 70px;
+  width: 70px;
+  font-size: 28px;
+}
+
+.menu-item {
+  cursor: pointer;
+
+  &:hover {
+    color: $app-color-2;
+  }
+
+  .active {
+    color: $app-color-2;
+  }
+}

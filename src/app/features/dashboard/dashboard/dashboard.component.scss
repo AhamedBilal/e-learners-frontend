@@ -1,0 +1,31 @@
+@import "src/styles/variables";
+
+main {
+  display: flex;
+  flex-wrap: nowrap;
+  //background-color: #a9f1df;
+  height: 100%;
+  height: -webkit-fill-available;
+  //max-height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+aside {
+  width: 280px;
+  height: 100%;
+  position: fixed;
+}
+
+.profile-image {
+  font-size: 32px;
+  font-weight: bolder;
+  background-color: $app-color-1;
+  color: white;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
