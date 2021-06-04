@@ -23,12 +23,12 @@
       </form>
     </div>
     <div class="d-flex gap-2 ms-auto">
-      <button class="btn btn-outline-primary d-flex align-items-center"><span class="material-icons">shopping_cart</span>
+      <button class="btn btn-outline-primary d-flex align-items-center" routerLink="cart" routerLinkActive="active"><span class="material-icons">shopping_cart</span>
         <span class="badge rounded-pill bg-danger text-white">1</span>
       </button>
-      <button class="btn btn-outline-primary" type="submit">Log in</button>
-      <button class="btn btn-primary" type="submit">Sign Up</button>
-      <button class="btn logo-btn rounded-circle" (click)="isMenu = true;" cdkOverlayOrigin
+      <button *ngIf="!token" class="btn btn-outline-primary" routerLink="/auth/login" routerLinkActive="active">Log in</button>
+      <button *ngIf="!token" class="btn btn-primary" routerLink="/auth/signup" routerLinkActive="active">Sign Up</button>
+      <button [hidden]="!token" class="btn logo-btn rounded-circle" (click)="isMenu = true;" cdkOverlayOrigin
               #triggerNotification="cdkOverlayOrigin">AB</button>
     </div>
   </div>
@@ -48,10 +48,10 @@
 >
   <div class="menu border-1 shadow-sm py-2">
     <div class="d-flex align-items-center gap-3 px-2">
-      <button class="btn logo-btn logo-btn-lg rounded-circle">AB</button>
+      <button class="btn logo-btn logo-btn-lg rounded-circle">{{userData?.fname[0]}} {{userData?.lname[0]}}</button>
       <div>
-        <div>Ahamed Bilal</div>
-        <div class="small text-muted">ahamedbilalazmy@gmail.com</div>
+        <div>{{userData?.fname}} {{userData?.lname}}</div>
+        <div class="small text-muted">{{userData?.email}}</div>
       </div>
     </div>
     <hr class="dropdown-divider">
@@ -65,7 +65,7 @@
     <div class="menu-item px-3 py-2">Public profile</div>
     <div class="menu-item px-3 py-2">Edit profile</div>
     <hr class="dropdown-divider">
-    <div class="menu-item px-3 py-2">Log out</div>
+    <div class="menu-item px-3 py-2" (click)="logout()">Log out</div>
     <hr class="dropdown-divider">
   </div>
 </ng-template>

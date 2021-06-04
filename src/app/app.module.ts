@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {CoreModule} from "./core/core.module";
 import {NgxSpinnerModule} from "ngx-spinner";
+import {httpInterceptorProviders} from "./core/interceptors";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -16,9 +18,15 @@ import {NgxSpinnerModule} from "ngx-spinner";
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-center'
+    })
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
