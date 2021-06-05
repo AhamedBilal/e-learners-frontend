@@ -5,6 +5,12 @@
 <div class="py-3 px-5">
   <form action="">
     <div class="mb-3">
+      <div class="mb-3">
+        <label for="formFile" class="place-holder">
+          <span class="material-icons" *ngIf="!imgBase">image</span>
+          <img *ngIf="imgBase" class="img-fluid d-block h-100" [src]="imgBase" alt="">
+        </label>
+      </div>
       <label for="formFile" class="form-label">Add / Change Image</label>
       <input class="form-control" type="file" id="formFile" (change)="onChangeHandler($event)">
     </div>
@@ -14,3 +20,12 @@
 <div class="border-top border-1 py-3 d-flex align-items-center justify-content-center">
   <button type="button" class="btn btn-danger" (click)="save()">Save</button>
 </div>
+
+
+<app-image-cropper
+  [imageChanedEvent]="imageChangedEvent"
+  (imageCropped)="imageCropped($event)"
+  [aspectRatio]="1"
+  [viewMode]="0"
+  [resizeToWidth]="250"
+></app-image-cropper>

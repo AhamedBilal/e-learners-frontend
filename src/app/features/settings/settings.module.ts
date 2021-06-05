@@ -7,6 +7,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { PhotoComponent } from './components/photo/photo.component';
 import { AccountComponent } from './components/account/account.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../../shared/shared.module";
 
 
 @NgModule({
@@ -16,10 +17,11 @@ import {ReactiveFormsModule} from "@angular/forms";
     PhotoComponent,
     AccountComponent
   ],
-    imports: [
-        CommonModule,
-        SettingsRoutingModule,
-        ReactiveFormsModule
-    ]
+  imports: [
+    CommonModule,
+    SettingsRoutingModule,
+    ReactiveFormsModule,
+    SharedModule
+  ]
 })
 export class SettingsModule { }

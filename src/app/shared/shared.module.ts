@@ -9,6 +9,9 @@ import { ImageCropperComponent } from './image-cropper/image-cropper.component';
   declarations: [
     ImageCropperComponent
   ],
+  exports: [
+    ImageCropperComponent
+  ],
   imports: [
     CommonModule,
     SharedRoutingModule

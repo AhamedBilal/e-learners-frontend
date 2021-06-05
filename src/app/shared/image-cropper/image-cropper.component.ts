@@ -12,9 +12,12 @@ import ViewMode = Cropper.ViewMode;
 })
 export class ImageCropperComponent {
 
+  // @ts-ignore
   @ViewChild('ngxPhotoEditorContent', {static: false}) content;
 
+  // @ts-ignore
   public cropper: Cropper;
+  // @ts-ignore
   public outputImage: string;
   prevZoom = 0;
 
@@ -28,6 +31,7 @@ export class ImageCropperComponent {
   @Input() guides = true;
   @Input() centerIndicator = true;
   @Input() viewMode: ViewMode = 0;
+  // @ts-ignore
   @Input() modalSize: size;
   @Input() modalCentered = false;
   @Input() scalable = true;
@@ -38,10 +42,13 @@ export class ImageCropperComponent {
   @Input() roundCropper = false;
   @Input() canvasHeight = 400;
 
+  // @ts-ignore
   @Input() resizeToWidth: number;
+  // @ts-ignore
   @Input() resizeToHeight: number;
   @Input() imageSmoothingEnabled = true;
   @Input() imageSmoothingQuality: ImageSmoothingQuality = 'high';
+  // @ts-ignore
   url: string;
   lastUpdate = Date.now();
 
@@ -215,6 +222,7 @@ export class ImageCropperComponent {
     cropedImage.toBlob(blob => {
       this.imageCropped.emit({
         base64: this.outputImage,
+        // @ts-ignore
         file: new File([blob], Date.now() + '.' + this.format, {type: 'image/' + this.format})
       });
     }, 'image/' + this.format, this.quality / 100);
