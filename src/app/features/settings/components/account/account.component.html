@@ -3,24 +3,28 @@
   <p>Edit your account settings and change your password here.</p>
 </div>
 <div class="py-3 px-5">
-  <form action="">
+  <form action="" [formGroup]="accountForm">
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email:</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name">
+      <label for="inputEmail" class="form-label">Email:</label>
+      <input type="email" formControlName="email" autocomplete="email" class="form-control" id="inputEmail" placeholder="Email">
     </div>
     <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Password:</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Current Password">
+      <label for="inputUsername" class="form-label">Username:</label>
+      <input type="text" formControlName="username" class="form-control" id="inputUsername" placeholder="Username" autocomplete="username">
     </div>
     <div class="mb-3">
-      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter New Password">
+      <label for="inputOldPass" class="form-label">Password:</label>
+      <input type="password" formControlName="oldPassword" class="form-control" id="inputOldPass" placeholder="Enter Current Password" autocomplete="current-password">
     </div>
     <div class="mb-3">
-      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Re-enter New Password">
+      <input type="password" formControlName="password" class="form-control" id="inputNew" placeholder="Enter New Password" autocomplete="new-password">
+    </div>
+    <div class="mb-3">
+      <input type="password" formControlName="confirmPassword" class="form-control" id="inpuConfirm" placeholder="Re-enter New Password">
     </div>
   </form>
 </div>
 
 <div class="border-top border-1 py-3 d-flex align-items-center justify-content-center">
-  <button type="button" class="btn btn-danger">Save Changes</button>
+  <button type="button" class="btn btn-danger" (click)="saveChanges()">Save Changes</button>
 </div>

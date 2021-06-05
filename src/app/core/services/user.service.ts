@@ -22,11 +22,19 @@ export class UserService {
   }
 
   getUserById(id: number) {
-    return this.http.get(environment.baseURI + `user/changePassword/${id}`);
+    return this.http.get(environment.baseURI + `user/${id}`);
   }
 
   getAllUsers(id: number) {
     return this.http.get(environment.baseURI + `user`);
+  }
+
+  editPhoto(obj: FormData) {
+    return this.http.put(environment.baseURI + `user/edit-photo`, obj);
+  }
+
+  becomeInstructor() {
+    return this.http.put(environment.baseURI + `auth/become-instructor`, null);
   }
 
 }

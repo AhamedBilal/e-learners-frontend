@@ -18,8 +18,9 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.token = this.auth.getToken();
     this.data.currentUserData.subscribe(res => {
+      this.token = this.auth.getToken();
+      console.log('data:', res);
       if (this.token) {
         if (res) {
           this.userData = res;

@@ -26,7 +26,8 @@ export class StorageService {
 
   getItem(key: string) {
     const strItem = localStorage.getItem(key);
-    if (strItem) {
+    if (strItem !== 'undefined') {
+      // @ts-ignore
       return JSON.parse(strItem);
     } else {
       return null;

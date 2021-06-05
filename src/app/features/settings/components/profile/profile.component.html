@@ -3,32 +3,32 @@
   <p>Add information about yourself</p>
 </div>
 <div class="py-3 px-5">
-  <form action="">
+  <form action="" [formGroup]="profileForm">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Basic:</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name">
+      <input type="text" formControlName="fname" class="form-control" id="exampleInputEmail1" placeholder="First Name">
     </div>
     <div class="mb-3">
-      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Last Name">
+      <input type="text" class="form-control" formControlName="lname" id="exampleInputEmail1" placeholder="Last Name">
     </div>
     <div class="mb-3">
-      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Headline">
+      <input type="text" class="form-control" formControlName="headline" id="exampleInputEmail1" placeholder="Headline">
       <div class="form-text">Add a professional headline like, "Engineer at Udemy" or "Architect."</div>
     </div>
     <div class="">
-      <textarea rows="3"  class="form-control" placeholder="Bio"></textarea>
+      <textarea rows="3"  class="form-control" placeholder="Bio" formControlName="bio"></textarea>
     </div>
     <hr>
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Links:</label>
-      <input type="url" class="form-control" id="exampleInputEmail1" placeholder="Website (http(s)://..)">
+      <input type="url" class="form-control" formControlName="website" id="exampleInputEmail1" placeholder="Website (http(s)://..)">
     </div>
     <div class="mb-3">
-      <input type="url" class="form-control" id="exampleInputEmail1" placeholder="Twitter Profile">
+      <input type="url" class="form-control" formControlName="twitter" id="exampleInputEmail1" placeholder="Twitter Profile">
     </div>
   </form>
 </div>
 
 <div class="border-top border-1 py-3 d-flex align-items-center justify-content-center">
-  <button type="button" class="btn btn-danger">Save</button>
+  <button type="button" class="btn btn-danger" (click)="saveChanges()">Save Changes</button>
 </div>

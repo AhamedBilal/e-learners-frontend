@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 
 @Injectable({
@@ -8,10 +8,17 @@ export class DataService {
 
   private userData = new BehaviorSubject(null);
   currentUserData = this.userData.asObservable();
+  userDataObj: any;
 
-  constructor() { }
+  constructor() {
+  }
 
   changeUserData(obj: any) {
-    this.userData.next(obj)
+    if (this.userDataObj) {
+      this.userDataObj = {...this.userDataObj, ...obj};
+    } else {
+      this.userDataObj = {...obj};
+    }
+    this.userData.next(this.userDataObj)
   }
 }

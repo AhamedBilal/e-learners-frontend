@@ -21,14 +21,14 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    this.token = this.auth.getToken();
+    this.token = this.auth.getToken() || null;
     console.log(this.token);
 
-    if (!req.headers.has('Content-Type')) {
-      req = req.clone({
-        headers: req.headers.set('Content-Type', 'application/json')
-      });
-    }
+    // if (!req.headers.has('Content-Type')) {
+    //   req = req.clone({
+    //     headers: req.headers.set('Content-Type', 'application/json')
+    //   });
+    // }
 
     req = this.addAuthenticationToken(req);
 

@@ -32,6 +32,7 @@
 .menu {
   background-color: #F8F9FA;
   border-radius: 5px;
+  min-width: 300px;
 }
 
 .logo-btn-lg {
@@ -47,7 +48,7 @@
     color: $app-color-2;
   }
 
-  .active {
+  &.active {
     color: $app-color-2;
   }
 }

@@ -6,6 +6,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PhotoComponent } from './components/photo/photo.component';
 import { AccountComponent } from './components/account/account.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -15,9 +16,10 @@ import { AccountComponent } from './components/account/account.component';
     PhotoComponent,
     AccountComponent
   ],
-  imports: [
-    CommonModule,
-    SettingsRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        SettingsRoutingModule,
+        ReactiveFormsModule
+    ]
 })
 export class SettingsModule { }

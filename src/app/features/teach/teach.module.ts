@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { TeachRoutingModule } from './teach-routing.module';
+import { TeachComponent } from './teach/teach.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    TeachComponent
+  ],
   imports: [
     CommonModule,
     TeachRoutingModule

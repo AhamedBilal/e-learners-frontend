@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
+import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ImageCropperComponent
+  ],
   imports: [
     CommonModule,
     SharedRoutingModule

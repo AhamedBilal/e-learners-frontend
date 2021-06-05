@@ -6,11 +6,11 @@
   <form action="">
     <div class="mb-3">
       <label for="formFile" class="form-label">Add / Change Image</label>
-      <input class="form-control" type="file" id="formFile">
+      <input class="form-control" type="file" id="formFile" (change)="onChangeHandler($event)">
     </div>
   </form>
 </div>
 
 <div class="border-top border-1 py-3 d-flex align-items-center justify-content-center">
-  <button type="button" class="btn btn-danger">Save</button>
+  <button type="button" class="btn btn-danger" (click)="save()">Save</button>
 </div>

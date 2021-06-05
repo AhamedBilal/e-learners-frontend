@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   getToken() {
-    return this.storage.getItem('token') || null;
+    return this.storage.getItem('token');
   }
 
   setToken(token: string) {
