@@ -5,6 +5,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CourseService} from "../../../../core/services/course.service";
 import {ToastrService} from "ngx-toastr";
+import {BucketService} from "../../../../core/services/bucket.service";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-lesson-dialog',
@@ -17,9 +19,11 @@ export class LessonDialogComponent implements OnInit {
 
   lessonForm: FormGroup;
   isUpdate = false;
+  private videoFile: any;
+  private filename: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<LessonDialogComponent>,
-              private fb: FormBuilder, private courseService: CourseService, private toastr: ToastrService) {
+              private fb: FormBuilder, private courseService: CourseService, private toastr: ToastrService, private bucket: BucketService) {
     this.lessonForm = this.fb.group({
       title: ['', Validators.required],
       type: ['', Validators.required],
@@ -39,9 +43,20 @@ export class LessonDialogComponent implements OnInit {
   get type() {
     return this.lessonForm.get('type')?.value;
   }
+  get title() {
+    return this.lessonForm.get('title')?.value;
+  }
 
-  save() {
+  async save() {
     if (this.lessonForm.valid) {
+      if (this.type === 'video') {
+        if (this.videoFile) {
+          await this.bucket.uploadFile(this.videoFile, this.filename);
+        } else {
+          this.toastr.warning('Select a video');
+          return;
+        }
+      }
       if (!this.isUpdate) {
         this.courseService.addLesson(this.lessonForm.value).subscribe(value => {
           this.toastr.success('Saved!');
@@ -59,4 +74,9 @@ export class LessonDialogComponent implements OnInit {
     }
   }
 
+  onChanageHandler($event: any) {
+    this.videoFile = $event.target.files[0];
+    this.filename = this.title + this.data.id + formatDate(Date.now(), 'yyyyMMdd_HHmmsss', 'en-US') + this.videoFile.name.split('.').pop();
+    this.lessonForm.patchValue({content: this.filename});
+  }
 }

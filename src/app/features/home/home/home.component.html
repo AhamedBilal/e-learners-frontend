@@ -22,43 +22,23 @@
   <h2 class="fw-bold">Top Courses</h2>
   <hr>
   <div class="row">
-    <div class="col-md-3">
-      <div class="card">
+    <div *ngFor="let data of topCourses" class="col-md-3">
+      <div class="card pointer" [routerLink]="'course/'+data.id">
         <img
-          src="https://img-c.udemycdn.com/course/240x135/950390_270f_3.jpg?Expires=1622299229&Signature=hbjYV43nqVacDBzZKaQNfMdKzoN6V11fLwf2ID4LlINFuT-0maWvs4UY6EZ2Q~bS727fldyyDpnD6gD2xHSF7MTbwJ3zlJhS4cbzGDLfRD4~mGo0eeyrNtsxeYPuMd9H-Kp-KO2QTQN15ZeK-Crn-AaE47DWvF6LHbqixhUpl47~~JOUnbFXzLVatRlruvq17mhfSEMCJQnfU3gUV2jqzLjV6W3y1A-ZT03ut~Nv~QgKgsufOFlXjWJ7EjE~60qujyl9j9VteSOatZ1l9ZmjUVbvFe7Fs~V9Y8UvV2~w5-VK70h31gCmdfjo6bOBGXeAMyu5h36AY5vcbme34Etq6w__&Key-Pair-Id=APKAITJV77WS5ZT7262A"
+          [src]="fileURI + data?.imageUrl"
           class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title fs-6">Machine Learning A-Z™: Hands-On Python & R In Data Science</h5>
-          <div class="card-text small text-muted">Kirill Eremenko</div>
+          <h5 class="card-title fs-6 stretched-link">{{data.title}}</h5>
+          <div class="card-text small text-muted">{{data?.instructorName}}</div>
           <div class="rating d-flex align-items-center">
             <span class="fw-bold fs-4">4.6</span>
             <span class="material-icons">star</span>
             <span class="material-icons">star</span>
             <span class="material-icons">star</span>
             <span class="material-icons">star</span>
-            <span class="text-secondary">({{340000 | number}})</span>
+            <span class="text-secondary">({{data?.enrolled || 0 | number}})</span>
           </div>
-          <a href="#" class="btn btn-danger">{{94.99 | currency}} </a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <div class="card">
-        <img
-          src="https://img-c.udemycdn.com/course/240x135/950390_270f_3.jpg?Expires=1622299229&Signature=hbjYV43nqVacDBzZKaQNfMdKzoN6V11fLwf2ID4LlINFuT-0maWvs4UY6EZ2Q~bS727fldyyDpnD6gD2xHSF7MTbwJ3zlJhS4cbzGDLfRD4~mGo0eeyrNtsxeYPuMd9H-Kp-KO2QTQN15ZeK-Crn-AaE47DWvF6LHbqixhUpl47~~JOUnbFXzLVatRlruvq17mhfSEMCJQnfU3gUV2jqzLjV6W3y1A-ZT03ut~Nv~QgKgsufOFlXjWJ7EjE~60qujyl9j9VteSOatZ1l9ZmjUVbvFe7Fs~V9Y8UvV2~w5-VK70h31gCmdfjo6bOBGXeAMyu5h36AY5vcbme34Etq6w__&Key-Pair-Id=APKAITJV77WS5ZT7262A"
-          class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title fs-6">Machine Learning A-Z™: Hands-On Python & R In Data Science</h5>
-          <div class="card-text small text-muted">Kirill Eremenko</div>
-          <div class="rating d-flex align-items-center">
-            <span class="fw-bold fs-4">4.6</span>
-            <span class="material-icons">star</span>
-            <span class="material-icons">star</span>
-            <span class="material-icons">star</span>
-            <span class="material-icons">star</span>
-            <span class="text-secondary">({{340000 | number}})</span>
-          </div>
-          <a href="#" class="btn btn-danger">{{94.99 | currency}} </a>
+          <a href="#" class="btn btn-danger">{{data?.price === 0 ? 'Free' : data?.price | currency}} </a>
         </div>
       </div>
     </div>

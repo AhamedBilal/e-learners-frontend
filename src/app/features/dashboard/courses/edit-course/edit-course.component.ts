@@ -49,6 +49,7 @@ export class EditCourseComponent implements OnInit {
     {id: 1, price: 74.99},
     {id: 1, price: 79.99},
   ]
+  publishForm: FormGroup;
 
   constructor(private _formBuilder: FormBuilder,
               private bucket: BucketService,
@@ -65,6 +66,10 @@ export class EditCourseComponent implements OnInit {
       imageUrl: [''],
       categoryId: ['', Validators.required],
       levelId: ['', Validators.required]
+    });
+
+    this.publishForm = this._formBuilder.group({
+      price: [0, Validators.required],
     })
 
 

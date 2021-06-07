@@ -20,7 +20,7 @@
     </div>
     <div class="mb-3" *ngIf="type==='video'">
       <label for="formFile" class="form-label">Upload Video</label>
-      <input class="form-control" type="file" id="formFile">
+      <input class="form-control" type="file" id="formFile" (change)="onChanageHandler($event)">
     </div>
   </form>
 </mat-dialog-content>

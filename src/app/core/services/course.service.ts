@@ -23,6 +23,10 @@ export class CourseService {
     return this.http.get(environment.baseURI + 'courses');
   }
 
+  getTopCourses() {
+    return this.http.get(environment.baseURI + 'courses/top');
+  }
+
   getAllCoursesForInstructor(): Observable<any> {
     return this.http.get(environment.baseURI + 'courses/instructor');
   }

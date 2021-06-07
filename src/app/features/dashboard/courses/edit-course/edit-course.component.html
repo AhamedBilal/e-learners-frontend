@@ -92,15 +92,12 @@
     <mat-step>
       <ng-template matStepLabel>Publish your course</ng-template>
       <p>You are now done.</p>
-      <form>
+      <form [formGroup]="publishForm">
         <div class="row">
           <div class="col-md-4 mb-3">
             <label class="form-label">Pricing</label>
-            <select class="form-select" formControlName="">
-              <option value="">Free</option>
-              <option value="">19.99 USD</option>
-              <option value="">49.99 USD</option>
-              <option value="">99.99 USD</option>
+            <select class="form-select" formControlName="price">
+              <option *ngFor="let data of prices">{{data.price === 0 ? 'Free' : data.price | currency}}</option>
             </select>
           </div>
           <div>
