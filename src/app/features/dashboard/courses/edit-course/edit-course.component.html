@@ -1,71 +1,58 @@
 <div class="conatiner mt-5">
   <mat-horizontal-stepper #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
+    <mat-step [stepControl]="courseForm">
+      <form [formGroup]="courseForm">
         <ng-template matStepLabel>Basic Details</ng-template>
         <div class="container">
           <div class="py-3 px-5">
-            <form action="">
-              <div class="mb-3">
-                <label class="form-label">Course title</label>
-                <input type="text" placeholder="title" class="form-control">
+            <div class="mb-3">
+              <label class="form-label">Course title</label>
+              <input type="text" formControlName="title" placeholder="title" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Course subtitle</label>
+              <input type="text" formControlName="subtitle" placeholder="title" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Course description</label>
+              <ckeditor [editor]="Editor" formControlName="description"></ckeditor>
+            </div>
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label class="form-label">Category</label>
+                <select class="form-select" formControlName="categoryId">
+                  <option [value]="data?.id" *ngFor="let data of categories">{{data?.name}}</option>
+                </select>
               </div>
-              <div class="mb-3">
-                <label class="form-label">Course subtitle</label>
-                <input type="text" placeholder="title" class="form-control">
+              <div class="col-md-4 mb-3">
+                <label class="form-label">Level</label>
+                <select class="form-select" formControlName="levelId">
+                  <option [value]="data?.id" *ngFor="let data of levels">{{data?.name}}</option>
+                </select>
               </div>
-              <div class="mb-3">
-                <label class="form-label">Course description</label>
-                <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+            </div>
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="formFile" class="place-holder">
+                  <span class="material-icons" *ngIf="!imgBase">image</span>
+                  <img *ngIf="imgBase" class="img-fluid d-block h-100" [src]="imgBase" alt="">
+                </label>
               </div>
-              <div class="row">
-                <div class="col-md-4 mb-3">
-                  <label class="form-label">Category</label>
-                  <select class="form-select" name="" id="">
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                  </select>
-                </div>
-                <div class="col-md-4 mb-3">
-                  <label class="form-label">Level</label>
-                  <select class="form-select" name="" id="">
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                  </select>
-                </div>
-                <div class="col-md-4 mb-3">
-                  <label class="form-label">Language</label>
-                  <select class="form-select" name="" id="">
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                  </select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4 mb-3">
-                  <label for="formFile" class="place-holder">
-                    <span class="material-icons">image</span>
+              <div class="col-md-8">
+                <div class="mb-3">
+                  <label for="formFile" class="form-label">
+                    Upload your course image here.
                   </label>
-                </div>
-                <div class="col-md-8">
-                  <div class="mb-3">
-                    <label for="formFile" class="form-label">
-                      Upload your course image here.
-                    </label>
-                    <input class="form-control" type="file" id="formFile">
-                    <div class="form-text">It must meet our course image quality standards to be accepted.
-                      Important guidelines: 750x422 pixels; .jpg, .jpeg,. gif, or .png. no text on the image.
-                    </div>
+                  <input class="form-control" type="file" id="formFile" (change)="onChangeHandler($event)">
+                  <div class="form-text">It must meet our course image quality standards to be accepted.
+                    Important guidelines: 750x422 pixels; .jpg, .jpeg,. gif, or .png. no text on the image.
                   </div>
                 </div>
               </div>
-              <div>
-                <button class="btn btn-danger">Save</button>
-              </div>
-            </form>
+            </div>
+            <div>
+              <button class="btn btn-danger" (click)="save()">Save</button>
+            </div>
           </div>
         </div>
       </form>
@@ -74,37 +61,29 @@
     <!--    course content-->
     <mat-step [stepControl]="secondFormGroup" label="Create your content">
       <form [formGroup]="secondFormGroup">
-        <div class="card bg-light p-3">
-          <h6 class="fw-bold">Section 1</h6>
-          <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="card bg-light p-3" *ngFor="let section of sections; index as i">
+         <div class="d-flex align-items-center justify-content-between">
+           <h6 class="fw-bold">{{section?.title}}</h6>
+           <div><button class="btn btn-sm p-1" matTooltip="Edit" (click)="openSection(section)"><span class="material-icons fs-6">edit</span></button>
+             <button class="btn btn-sm p-1" matTooltip="delete" (click)="deleteSection(section)"><span class="material-icons fs-6">delete</span></button></div>
+         </div>
+          <ul class="list-group" *ngIf=" section?.lessons.length > 0">
+            <li class="list-group-item d-flex justify-content-between align-items-start"
+                *ngFor="let data of section?.lessons">
               <div class="ms-2 me-auto">
-                <div class="fw-bold">Subheading</div>
-                Cras justo odio
+                <div class="fw-bold">{{data.title}}</div>
+                {{data.type}}
               </div>
-              <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">Subheading</div>
-                Cras justo odio
-              </div>
-              <span class="badge bg-primary rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-              <div class="ms-2 me-auto">
-                <div class="fw-bold">Subheading</div>
-                Cras justo odio
-              </div>
-              <span class="badge bg-primary rounded-pill">14</span>
+              <button class="btn btn-sm" matTooltip="Edit" (click)="openLesson(section.id, i, data)"><span class="material-icons fs-6">edit</span></button>
+              <button class="btn btn-sm" matTooltip="delete" (click)="deleteLesson(i, data)"><span class="material-icons fs-6">delete</span></button>
             </li>
           </ul>
           <div class="text-center p-3">
-            <button class="btn btn-secondary btn-sm" (click)="openLesson()">Add lesson</button>
+            <button class="btn btn-secondary btn-sm" (click)="openLesson(section?.id, i)">Add lesson</button>
           </div>
         </div>
         <div class="text-center p-3">
-          <button class="btn btn-danger" (click)="openDialog()">create new section</button>
+          <button class="btn btn-danger" (click)="openSection()">create new section</button>
         </div>
       </form>
     </mat-step>
@@ -117,7 +96,7 @@
         <div class="row">
           <div class="col-md-4 mb-3">
             <label class="form-label">Pricing</label>
-            <select class="form-select" name="" id="">
+            <select class="form-select" formControlName="">
               <option value="">Free</option>
               <option value="">19.99 USD</option>
               <option value="">49.99 USD</option>
@@ -132,3 +111,11 @@
     </mat-step>
   </mat-horizontal-stepper>
 </div>
+
+<app-image-cropper
+  [imageChanedEvent]="imageChangedEvent"
+  (imageCropped)="imageCropped($event)"
+  [aspectRatio]="16/9"
+  [viewMode]="0"
+  [resizeToWidth]="400"
+></app-image-cropper>

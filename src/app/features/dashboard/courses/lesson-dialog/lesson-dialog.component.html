@@ -1,24 +1,24 @@
 <h2 mat-dialog-title>Section</h2>
 <mat-dialog-content class="mat-typography">
-  <form action="" class="pb-3">
+  <form action="" class="pb-3" [formGroup]="lessonForm">
     <div class="mb-3">
       <label for="" class="form-label">Title</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" formControlName="title">
     </div>
     <div class="mb-3">
       <label for="" class="form-label">Lesson Type</label>
       <div>
-        <mat-radio-group aria-label="Select an option">
-          <mat-radio-button value="1">Option 1</mat-radio-button>
-          <mat-radio-button value="2">Option 2</mat-radio-button>
+        <mat-radio-group aria-label="Select an option" formControlName="type">
+          <mat-radio-button value="article">Article</mat-radio-button>
+          <mat-radio-button value="video">Video</mat-radio-button>
         </mat-radio-group>
       </div>
     </div>
-    <div class="mb-3">
+    <div class="mb-3" *ngIf="type==='article'">
       <label for="" class="form-label">Article</label>
-      <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+      <ckeditor [editor]="Editor" formControlName="content"></ckeditor>
     </div>
-    <div class="mb-3">
+    <div class="mb-3" *ngIf="type==='video'">
       <label for="formFile" class="form-label">Upload Video</label>
       <input class="form-control" type="file" id="formFile">
     </div>
@@ -26,5 +26,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close color="warn">Cancel</button>
-  <button mat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+  <button mat-button color="primary" (click)="save()">Save</button>
 </mat-dialog-actions>

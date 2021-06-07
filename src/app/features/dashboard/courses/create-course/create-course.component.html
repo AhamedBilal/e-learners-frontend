@@ -1,57 +1,38 @@
 <div class="container">
   <div class="py-3 px-5">
     <h1>Create new course</h1>
-    <form action="">
+    <form action="" [formGroup]="courseForm">
       <div class="mb-3">
         <label class="form-label">Course title</label>
-        <input type="text" placeholder="title" class="form-control">
+        <input type="text" formControlName="title" placeholder="title" class="form-control">
       </div>
       <div class="mb-3">
         <label class="form-label">Course subtitle</label>
-        <input type="text" placeholder="title" class="form-control">
+        <input type="text" formControlName="subtitle" placeholder="title" class="form-control">
       </div>
       <div class="mb-3">
         <label class="form-label">Course description</label>
-        <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+        <ckeditor [editor]="Editor" formControlName="description"></ckeditor>
       </div>
       <div class="row">
         <div class="col-md-4 mb-3">
           <label class="form-label">Category</label>
-          <select class="form-select" name="" id="">
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
+          <select class="form-select" formControlName="categoryId" name="" id="">
+            <option [value]="data?.id" *ngFor="let data of categories">{{data?.name}}</option>
           </select>
         </div>
         <div class="col-md-4 mb-3">
           <label class="form-label">Level</label>
-          <select class="form-select" name="" id="">
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-          </select>
-        </div>
-        <div class="col-md-4 mb-3">
-          <label class="form-label">Language</label>
-          <select class="form-select" name="" id="">
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
-          </select>
-        </div>
-        <div class="col-md-4 mb-3">
-          <label class="form-label">Pricing</label>
-          <select class="form-select" name="" id="">
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
+          <select class="form-select" formControlName="levelId" name="" id="">
+            <option [value]="data?.id" *ngFor="let data of levels">{{data?.name}}</option>
           </select>
         </div>
       </div>
       <div class="row">
         <div class="col-md-4 mb-3">
           <label for="formFile" class="place-holder">
-            <span class="material-icons">image</span>
+            <span class="material-icons" *ngIf="!imgBase">image</span>
+            <img *ngIf="imgBase" class="img-fluid d-block h-100" [src]="imgBase" alt="">
           </label>
         </div>
         <div class="col-md-8">
@@ -59,15 +40,23 @@
             <label for="formFile" class="form-label">
               Upload your course image here.
             </label>
-            <input class="form-control" type="file" id="formFile">
+            <input class="form-control" type="file" id="formFile" (change)="onChangeHandler($event)">
             <div class="form-text">It must meet our course image quality standards to be accepted.
               Important guidelines: 750x422 pixels; .jpg, .jpeg,. gif, or .png. no text on the image.</div>
           </div>
         </div>
       </div>
       <div>
-        <button class="btn btn-danger">Save</button>
+        <button class="btn btn-danger" (click)="save()">Save</button>
       </div>
     </form>
   </div>
 </div>
+
+<app-image-cropper
+  [imageChanedEvent]="imageChangedEvent"
+  (imageCropped)="imageCropped($event)"
+  [aspectRatio]="16/9"
+  [viewMode]="0"
+  [resizeToWidth]="400"
+></app-image-cropper>

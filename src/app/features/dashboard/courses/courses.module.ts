@@ -14,6 +14,7 @@ import { SectionDialogComponent } from './section-dialog/section-dialog.componen
 import { LessonDialogComponent } from './lesson-dialog/lesson-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatRadioModule} from "@angular/material/radio";
+import {SharedModule} from "../../../shared/shared.module";
 
 
 @NgModule({
@@ -24,16 +25,17 @@ import {MatRadioModule} from "@angular/material/radio";
     SectionDialogComponent,
     LessonDialogComponent
   ],
-  imports: [
-    CommonModule,
-    CoursesRoutingModule,
-    MatTooltipModule,
-    CKEditorModule,
-    ReactiveFormsModule,
-    MatStepperModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatRadioModule
-  ]
+    imports: [
+        CommonModule,
+        CoursesRoutingModule,
+        MatTooltipModule,
+        CKEditorModule,
+        ReactiveFormsModule,
+        MatStepperModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatRadioModule,
+        SharedModule
+    ]
 })
 export class CoursesModule { }

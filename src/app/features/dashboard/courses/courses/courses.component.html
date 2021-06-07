@@ -5,26 +5,30 @@
       <span class="input-group-text material-icons" id="basic-addon1">search</span>
       <input type="text" class="form-control" placeholder="Search here..." style="max-width: 400px">
     </div>
-    <button class="btn btn-danger text-nowrap">New Course</button>
+    <button class="btn btn-danger text-nowrap" routerLink="create">New Course</button>
   </div>
   <div>
     <div class="table-responsive">
       <table class="table">
         <thead>
         <tr>
-          <th scope="col">Title</th>
+          <th scope="col">ID</th>
           <th scope="col">Thumbnail</th>
-          <th scope="col">Created</th>
+          <th scope="col">Title</th>
+          <th scope="col">CreatedAt</th>
+          <th scope="col">UpdatedAt</th>
           <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td style="width: 100px">
-            <button class="btn btn-sm" matTooltip="Edit"><span class="material-icons fs-6">edit</span></button>
+        <tr *ngFor="let data of courses">
+          <td  scope="row">{{data?.id}}</td>
+          <td style="width: 100px;" ><img [src]="fileURI + data.imageUrl" class="img-fluid" alt=""></td>
+          <td>{{data?.title}}<br><small class="text-muted">{{data?.subtitle}}</small></td>
+          <td class="small">{{data?.createdAt | date: 'short'}}</td>
+          <td class="small">{{data?.updatedAt | date: 'short'}}</td>
+          <td style="width: 100px; vertical-align: middle">
+            <button class="btn btn-sm" matTooltip="Edit" [routerLink]="'edit/'+data.id"><span class="material-icons fs-6">edit</span></button>
             <button class="btn btn-sm" matTooltip="delete"><span class="material-icons fs-6">delete</span></button>
           </td>
         </tr>
