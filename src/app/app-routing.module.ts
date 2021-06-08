@@ -8,6 +8,7 @@ const routes: Routes = [
   {path: 'settings', loadChildren: () => import('./features/settings/settings.module').then(m => m.SettingsModule)},
   {path: 'dashboard', loadChildren: () => import('./features/dashboard/dashboard.module').then(m => m.DashboardModule)},
   {path: 'teacher', loadChildren: () => import('./features/teach/teach.module').then(m => m.TeachModule)},
+  {path: 'learning', loadChildren: () => import('./features/learning/learning.module').then(m => m.LearningModule)},
   {path: 'course/:id', loadChildren: () => import('./features/course/course.module').then(m => m.CourseModule)},
 ];
 

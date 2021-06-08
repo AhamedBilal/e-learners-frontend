@@ -66,4 +66,20 @@ export class CourseService {
   deleteLesson(id: number): Observable<any> {
     return this.http.delete(environment.baseURI + `lesson/${id}`);
   }
+
+  addToCart(id: number): Observable<any> {
+    return this.http.post(environment.baseURI + 'cart', {id});
+  }
+
+  getCart(): Observable<any> {
+    return this.http.get(environment.baseURI + 'cart');
+  }
+
+  removeItemFromCart(id: number): Observable<any> {
+    return this.http.delete(environment.baseURI + `cart/${id}`);
+  }
+
+  addOrder(id: number) {
+    return this.http.post(environment.baseURI + 'order', {id});
+  }
 }

@@ -10,6 +10,11 @@ export class DataService {
   currentUserData = this.userData.asObservable();
   userDataObj: any;
 
+
+  private cartData = new BehaviorSubject([]);
+  currentCartData = this.cartData.asObservable();
+  cartArr: any = [];
+
   constructor() {
   }
 
@@ -20,5 +25,15 @@ export class DataService {
       this.userDataObj = {...obj};
     }
     this.userData.next(this.userDataObj)
+  }
+
+  changeCartData(obj: any) {
+    this.cartArr = obj;
+    this.cartData.next(this.cartArr);
+  }
+
+  addCartData(obj: number) {
+    this.cartArr.push(obj);
+    this.cartData.next(this.cartArr);
   }
 }

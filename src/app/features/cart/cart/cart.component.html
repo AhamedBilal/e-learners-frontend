@@ -7,28 +7,25 @@
 <div class="container py-3">
   <div class="row">
     <div class="col-md-8 mb-3">
-      <div class="mb-3 fw-bold">0 Courses in Cart</div>
-      <div class="p-2 card bg-light border-1 shadow-sm">
-          <div>
-            <img class="float-start d-block" width="200px" src="https://img-c.udemycdn.com/course/240x135/3227583_5e75_6.jpg?Expires=1622298219&Signature=bDll0wbx~0X0ad-QFDqhxxqGnT4oR6LOjZdvzCQjRnwU6-KAii-e-LhmDwKm27zTMxc5s37vtDkOlMVsflQicq0qhH9ck0I7gw1vOF-jm~G2PmXNfk3rteRyi7V6~~HkPDhIzBx77M1LpvDSm7F5l~oCNPkpsvI0bJvAUIC9e4Pc7nW-w0JV0U3qydRnWjKXCr4iCW-iQntm8nUEjros1QMTY~7TOwRUuIa8TWs2BuBI5dF8WiGm0rqyP95OTlMdCVK-mRIKhwLG379Aziy41CL~dt6QHoYxbN1PkSCgF~H0yvMt00QxGl8FQMCj5-pQp~VQWyNZPtuRNjMYnFGHWA__&Key-Pair-Id=APKAITJV77WS5ZT7262A" alt="">
-            <h5>Complete Web & Mobile Designer</h5>
-            <small class="text-muted">By Ahamed Bilal</small>
-          </div>
-      </div>
-      <div class="p-2 card bg-light border-1 shadow-sm">
-          <div>
-            <img class="float-start d-block" width="200px" src="https://img-c.udemycdn.com/course/240x135/3227583_5e75_6.jpg?Expires=1622298219&Signature=bDll0wbx~0X0ad-QFDqhxxqGnT4oR6LOjZdvzCQjRnwU6-KAii-e-LhmDwKm27zTMxc5s37vtDkOlMVsflQicq0qhH9ck0I7gw1vOF-jm~G2PmXNfk3rteRyi7V6~~HkPDhIzBx77M1LpvDSm7F5l~oCNPkpsvI0bJvAUIC9e4Pc7nW-w0JV0U3qydRnWjKXCr4iCW-iQntm8nUEjros1QMTY~7TOwRUuIa8TWs2BuBI5dF8WiGm0rqyP95OTlMdCVK-mRIKhwLG379Aziy41CL~dt6QHoYxbN1PkSCgF~H0yvMt00QxGl8FQMCj5-pQp~VQWyNZPtuRNjMYnFGHWA__&Key-Pair-Id=APKAITJV77WS5ZT7262A" alt="">
-            <h5>Complete Web & Mobile Designer</h5>
-            <small class="text-muted">By Ahamed Bilal</small>
+      <div class="mb-3 fw-bold">{{cart?.courses?.length || 0}} Courses in Cart</div>
+      <div class="p-2 card bg-light border-1 shadow-sm" *ngFor="let data of cart?.courses">
+          <div class="d-flex gap-2">
+            <img class="float-start d-block" width="150px" [src]="fileURI + data?.imageUrl" alt="">
+            <div>
+              <h6 class="fw-bold mb-0">{{data.title}}</h6>
+              <small class="text-muted">By {{data?.instructorName}}</small>
+              <h6 class="fw-bold text-warning mb-1">{{data?.price===0? 'Free': data?.price | currency}}</h6>
+              <div><a class="pointer link-secondary" (click)="removeItem(data?.id)">remove</a></div>
+            </div>
           </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="mb-3 fw-bold">Total</div>
       <div>
-        <div class="display-5 fw-bolder">{{189.3245 | currency}}</div>
+        <div class="display-5 fw-bolder">{{total | currency}}</div>
         <div class="d-grid my-3">
-          <button class="btn btn-lg btn-danger d-block">Check out</button>
+          <button class="btn btn-lg btn-danger d-block" (click)="checkout()">Check out</button>
         </div>
       </div>
     </div>

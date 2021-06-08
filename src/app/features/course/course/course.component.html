@@ -1,1 +1,69 @@
-<p>course works!</p>
+<div class="bg-dark">
+  <div class="container py-5">
+    <div class="row flex-row-reverse">
+      <div class="col-md-4">
+        <img class="img-fluid img-thumbnail w-100"
+             [src]="fileURI + courseObj?.imageUrl"
+             alt="">
+      </div>
+      <div class="text-white col-md-8">
+        <h1 class="fw-bold">{{courseObj?.title}}</h1>
+        <h4>{{courseObj?.subtitle}}</h4>
+        <div>Created By <a href="" class="link-info">{{courseObj?.instructorName}}</a></div>
+        <div>Last Update {{courseObj?.updatedAt | date: 'shortDate'}}</div>
+        <div class="btn-group gap-2 mt-3">
+          <button *ngIf="!isAddedToCart" class="btn btn-outline-danger d-flex align-items-center" (click)="addToCart()">
+            Add to Cart &nbsp; <span class="material-icons">add_shopping_cart</span>
+          </button>
+          <button *ngIf="isAddedToCart" class="btn btn-outline-danger d-flex align-items-center" routerLink="/cart">
+            Go to Cart &nbsp; <span class="material-icons">add_shopping_cart</span>
+          </button>
+          <button class="btn btn-outline-info d-flex align-items-center">
+            Wishlist &nbsp; <span class="material-icons">favorite_border</span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="py-3">
+  <div class="container">
+    <h3 class="mb-3 fw-bold">Course content</h3>
+    <div class="text-muted">{{courseObj?.sections?.length}} sections</div>
+    <div class="mb-5">
+      <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item" *ngFor="let section of courseObj?.sections; index as i; first as isFirst">
+          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    [attr.data-bs-target]="'#panelsStayOpen-collapseOne'+i" aria-expanded="true"
+                    aria-controls="panelsStayOpen-collapseOne">
+              {{section.title}}
+            </button>
+          </h2>
+          <div [id]="'panelsStayOpen-collapseOne'+i" class="accordion-collapse collapse" [class.show]="isFirst"
+               aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body">
+              <ul class="list-group">
+                <li class="list-group-item align-items-center d-flex" *ngFor="let lesson of section?.lessons"><span class="material-icons">{{lesson.type==='video'?'play_circle_filled' : 'article'}}</span>&nbsp;{{lesson.title}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--    description-->
+    <div class="mb-5">
+      <h2 class="fw-bold">Description</h2>
+      <div [innerHTML]="courseObj?.description"></div>
+    </div>
+
+    <div>
+      <h2 class="fw-bold">Instructor</h2>
+      <h3 class="fw-bold text-primary">Ahamed Bilal</h3>
+      <h6 class="">Developer and Lead Instructor</h6>
+    </div>
+  </div>
+</div>
