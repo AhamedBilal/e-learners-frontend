@@ -43,6 +43,7 @@ export class LessonDialogComponent implements OnInit {
   get type() {
     return this.lessonForm.get('type')?.value;
   }
+
   get title() {
     return this.lessonForm.get('title')?.value;
   }
@@ -76,7 +77,7 @@ export class LessonDialogComponent implements OnInit {
 
   onChanageHandler($event: any) {
     this.videoFile = $event.target.files[0];
-    this.filename = this.title + this.data.id + formatDate(Date.now(), 'yyyyMMdd_HHmmsss', 'en-US') + this.videoFile.name.split('.').pop();
+    this.filename = this.title + this.data.id + formatDate(Date.now(), 'yyyyMMdd_HHmmsss', 'en-US') + '.' + this.videoFile.name.split('.').pop();
     this.lessonForm.patchValue({content: this.filename});
   }
 }

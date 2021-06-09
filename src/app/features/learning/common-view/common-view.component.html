@@ -1,0 +1,13 @@
+<div class="row">
+  <div *ngFor="let data of allData" class="col-md-3">
+    <div class="card pointer" [routerLink]="'../course/'+data.id">
+      <img
+        [src]="fileURI + data?.course?.imageUrl"
+        class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title fs-6 stretched-link">{{ data?.course?.title}}</h5>
+        <div class="card-text small text-muted">{{ data?.course?.instructorName}}</div>
+      </div>
+    </div>
+  </div>
+</div>

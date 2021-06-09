@@ -1,0 +1,41 @@
+<main>
+  <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white border-end border-1" style="width: 380px;">
+    <a class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+      <span class="fs-5 fw-semibold">COURSE CONTENT</span>
+    </a>
+    <div class="accordion overflow-auto" id="accordionPanelsStayOpenExample2">
+      <div class="accordion-item" *ngFor="let data of allData?.course?.sections; index as i; first as isFirst">
+        <h2 class="accordion-header" id="panelsStayOpen-headingOne1">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#panelsStayOpen-collapseOne'+i" aria-expanded="true"
+                  aria-controls="panelsStayOpen-collapseOne1">
+            {{data?.title}} ( {{getCompletedCount(data.id)}}/ {{data?.lessons?.length}})
+          </button>
+        </h2>
+        <div [id]="'panelsStayOpen-collapseOne'+i" class="accordion-collapse collapse" [class.show]="isFirst">
+          <div class="accordion-body p-0 py-2">
+            <div class="list-group rounded-0 custom-list-group">
+              <button (click)="selectedLesson=lesson; CompleteCheck();" type="button"
+                      class="list-group-item list-group-item-action" *ngFor="let lesson of data?.lessons">
+                {{lesson?.title}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="px-5 py-3 w-100 overflow-auto">
+    <h1 class="mb-3">{{selectedLesson?.title}}</h1>
+    <div *ngIf="selectedLesson?.type==='article'" [innerHTML]="selectedLesson?.content"></div>
+    <div *ngIf="selectedLesson?.type==='video'">
+      <app-vjs-player
+        [options]="{ autoplay: false, controls: true, sources: [{ src: fileURI + selectedLesson?.content, type: 'video/' + selectedLesson?.content.split('.').pop() }]}"></app-vjs-player>
+    </div>
+    <div class="my-3 d-grid">
+      <button class="btn btn-outline-primary" (click)="markAsComplete()">Mark
+        as {{isComplete ? 'Incomplete ' : 'Complete'}}</button>
+    </div>
+  </div>
+</main>
+

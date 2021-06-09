@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,14 @@ export class DataService {
   currentCartData = this.cartData.asObservable();
   cartArr: any = [];
 
+  private plyrReset = new BehaviorSubject(false);
+  resetPlayerEvent = this.userData.asObservable();
+
   constructor() {
+  }
+
+  resetPlayer() {
+    this.plyrReset.next(true);
   }
 
   changeUserData(obj: any) {

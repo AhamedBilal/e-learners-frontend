@@ -55,7 +55,7 @@
       </div>
     </div>
     <hr class="dropdown-divider">
-    <div class="menu-item px-3 py-2">My learning</div>
+    <div class="menu-item px-3 py-2" routerLink="/learning">My learning</div>
     <div class="menu-item px-3 py-2">My cart</div>
     <div class="menu-item px-3 py-2" *ngIf="userData.role === 'ROLE_STUDENT'" routerLink="teacher" routerLinkActive="active">Teach with us</div>
     <div class="menu-item px-3 py-2" *ngIf="userData.role !== 'ROLE_STUDENT'" routerLink="dashboard" routerLinkActive="active">Dashboard</div>
