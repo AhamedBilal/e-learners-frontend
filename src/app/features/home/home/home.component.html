@@ -51,13 +51,10 @@
   <h2 class="fw-bold">Top categories</h2>
   <hr>
   <div class="row">
-    <div class="col-md-3">
-      <div class="card">
-        <img
-          src="https://s.udemycdn.com/home/non-student-cta/udlite-lohp-promo-teacher.jpg"
-          class="card-img-top" alt="...">
-        <div class="card-footer text-muted h4">
-          Development
+    <div class="col-md-3" *ngFor="let data of topCategories">
+      <div class="card mb-3 pointer" [routerLink]="'courses/' + data?.name">
+        <div class="text-center d-flex align-items-center justify-content-center text-muted h4">
+          {{data?.name}}
         </div>
       </div>
     </div>

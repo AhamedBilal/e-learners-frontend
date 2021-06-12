@@ -15,6 +15,7 @@
           <th scope="col">ID</th>
           <th scope="col">Thumbnail</th>
           <th scope="col">Title</th>
+          <th scope="col">Status</th>
           <th scope="col">CreatedAt</th>
           <th scope="col">UpdatedAt</th>
           <th scope="col">Actions</th>
@@ -25,8 +26,9 @@
           <td  scope="row">{{data?.id}}</td>
           <td style="width: 100px;" ><img [src]="fileURI + data.imageUrl" class="img-fluid" alt=""></td>
           <td>{{data?.title}}<br><small class="text-muted">{{data?.subtitle}}</small></td>
-          <td class="small">{{data?.createdAt | date: 'short'}}</td>
-          <td class="small">{{data?.updatedAt | date: 'short'}}</td>
+          <td><small class="text-muted">{{data?.isPublished ? 'PUBLISHED' : 'UNPUBLISHED'}}</small></td>
+          <td class="small">{{data?.createdAt | date: 'shortDate'}}</td>
+          <td class="small">{{data?.updatedAt | date: 'shortDate'}}</td>
           <td style="width: 100px; vertical-align: middle">
             <button class="btn btn-sm" matTooltip="Edit" [routerLink]="'edit/'+data.id"><span class="material-icons fs-6">edit</span></button>
             <button class="btn btn-sm" matTooltip="delete"><span class="material-icons fs-6">delete</span></button>

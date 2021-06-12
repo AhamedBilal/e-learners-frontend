@@ -1,1 +1,25 @@
-<p>user works!</p>
+<div class="container py-5">
+  <div class="row flex-row-reverse mb-3">
+    <div class="col-md-4">
+      <div class="d-flex justify-content-center">
+        <img class="rounded-circle shadow-sm img-thumbnail" width="200px" [src]="fileURI + userData?.profilePic" alt="">
+      </div>
+    </div>
+    <div class="col-md-8">
+      <h6 class="text-muted">{{userData?.role === 'ROLE_STUDENT' ? 'STUDENT': 'INSTRUCTOR'}}</h6>
+      <h1>{{userData?.fname}} {{userData?.lname}}</h1>
+      <h3>{{userData?.headline}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <h2>About Me</h2>
+      <div [innerHTML]="userData?.bio"></div>
+    </div>
+    <div class="col-md-4">
+      <div class="d-grid">
+        <a [href]="userData?.website" *ngIf="userData?.website" type="button" role="button" class="btn btn-outline-primary">Website</a>
+      </div>
+    </div>
+  </div>
+</div>

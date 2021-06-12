@@ -27,6 +27,12 @@
             <option [value]="data?.id" *ngFor="let data of levels">{{data?.name}}</option>
           </select>
         </div>
+        <div class="col-md-4 mb-3">
+          <label class="form-label">Pricing</label>
+          <select class="form-select" formControlName="price">
+            <option *ngFor="let data of prices" [value]="data.price" >{{data.price === 0 ? 'Free' : data.price | currency}}</option>
+          </select>
+        </div>
       </div>
       <div class="row">
         <div class="col-md-4 mb-3">

@@ -25,6 +25,10 @@ export class UserService {
     return this.http.get(environment.baseURI + `user/${id}`);
   }
 
+  getUserByUsername(username: string) {
+    return this.http.get(environment.baseURI + `user/username/${username}`);
+  }
+
   getAllUsers(id: number) {
     return this.http.get(environment.baseURI + `user`);
   }

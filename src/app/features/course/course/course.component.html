@@ -12,14 +12,20 @@
         <div>Created By <a href="" class="link-info">{{courseObj?.instructorName}}</a></div>
         <div>Last Update {{courseObj?.updatedAt | date: 'shortDate'}}</div>
         <div class="btn-group gap-2 mt-3">
-          <button *ngIf="!isAddedToCart" class="btn btn-outline-danger d-flex align-items-center" (click)="addToCart()">
+          <button *ngIf="!isAddedToCart && !isBought" class="btn btn-outline-danger d-flex align-items-center"
+                  (click)="addToCart()">
             Add to Cart &nbsp; <span class="material-icons">add_shopping_cart</span>
           </button>
           <button *ngIf="isAddedToCart" class="btn btn-outline-danger d-flex align-items-center" routerLink="/cart">
             Go to Cart &nbsp; <span class="material-icons">add_shopping_cart</span>
           </button>
-          <button class="btn btn-outline-info d-flex align-items-center">
+          <button class="btn btn-outline-info d-flex align-items-center" *ngIf="!isWished && !isBought">
             Wishlist &nbsp; <span class="material-icons">favorite_border</span>
+          </button>
+
+          <button class="btn btn-outline-info d-flex align-items-center" *ngIf="isBought"
+                  [routerLink]="'/learning/course/'+courseObj?.id">
+            Start Course&nbsp; <span class="material-icons">school</span>
           </button>
 
         </div>
@@ -47,7 +53,9 @@
                aria-labelledby="panelsStayOpen-headingOne">
             <div class="accordion-body">
               <ul class="list-group">
-                <li class="list-group-item align-items-center d-flex" *ngFor="let lesson of section?.lessons"><span class="material-icons">{{lesson.type==='video'?'play_circle_filled' : 'article'}}</span>&nbsp;{{lesson.title}}</li>
+                <li class="list-group-item align-items-center d-flex" *ngFor="let lesson of section?.lessons"><span
+                  class="material-icons">{{lesson.type === 'video' ? 'play_circle_filled' : 'article'}}</span>&nbsp;{{lesson.title}}
+                </li>
               </ul>
             </div>
           </div>

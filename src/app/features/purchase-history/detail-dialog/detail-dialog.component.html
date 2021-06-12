@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Order Detail</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="container">
+    <div class="p-2 card bg-light border-1 shadow-sm" *ngFor="let data of allData">
+      <div class="d-flex gap-2">
+        <img class="float-start d-block" width="150px" [src]="fileURI + data?.course?.imageUrl" alt="">
+        <div>
+          <a [href]="'course/'+data?.course?.id"><h4 class="fw-bold mb-0">{{data?.course?.title}}</h4></a>
+          <small class="text-muted">By {{data?.course?.instructorName}}</small>
+          <h6 class="fw-bold text-warning mb-1">{{data?.price === 0 ? 'Free' : data?.price | currency}}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="warn">Close</button>
+</mat-dialog-actions>

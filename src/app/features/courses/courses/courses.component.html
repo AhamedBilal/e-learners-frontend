@@ -1,1 +1,15 @@
-<p>courses works!</p>
+<div class="container py-5">
+  <h4 class="text-muted fw-bold text-end"> Results : {{allData?.length || 0}} </h4>
+  <div class="p-2 card mb-2 bg-light border-1 shadow-sm" *ngFor="let data of allData">
+    <div class="d-flex gap-2">
+      <img class="img-fluid" [src]="fileURI + data?.imageUrl" alt="">
+      <div>
+        <a class="pointer link-dark" [href]="'/course/'+data?.id"><h3 class="fw-bold mb-0">{{data?.title}}</h3></a>
+        <h6 class="mb-0">{{data?.subtitle}}</h6>
+        <a class="pointer" [routerLink]="'/user/'+data?.instructorUserName"><small class="text-muted">By {{data?.instructorName}}</small></a>
+        <h6 class="text-muted small">Students :{{data?.students | number}}, &nbsp; Lessons :{{getLessons(data) | number}},&nbsp; Category: {{data?.categoryName}},&nbsp; Level: {{data?.levelName}}</h6>
+        <h6 class="fw-bold text-warning mb-1">{{data?.price===0? 'Free': data?.price | currency}}</h6>
+      </div>
+    </div>
+  </div>
+</div>

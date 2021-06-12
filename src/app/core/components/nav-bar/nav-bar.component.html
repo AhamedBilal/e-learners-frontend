@@ -1,33 +1,38 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top" style="z-index: 900">
   <div class="container-fluid">
     <a class="navbar-brand nav-logo" href="#">E Leaner</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContentBilal"
+            aria-controls="navbarSupportedContentBilal" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse dropdown-hover-all" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse dropdown-hover-all" id="navbarSupportedContentBilal">
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown101" role="button" data-bs-toggle="dropdown"
+             aria-expanded="false">Categories</a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown101">
+            <li *ngFor="let data of categories"><a class="dropdown-item"
+                                                   [routerLink]="'/courses/' +data.name ">{{data.name}}</a></li>
           </ul>
         </li>
       </ul>
-      <form class="d-flex">
+      <form class="d-flex" action="/courses/search">
         <div class="input-group">
           <span class="input-group-text material-icons" id="basic-addon1">search</span>
-          <input type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="basic-addon1">
+          <input type="text" class="form-control" name="k" placeholder="Search" aria-label="Username"
+                 aria-describedby="basic-addon1">
         </div>
       </form>
     </div>
     <div class="d-flex gap-2 ms-auto">
-      <button class="btn btn-outline-primary d-flex align-items-center" routerLink="cart" routerLinkActive="active"><span class="material-icons">shopping_cart</span>
+      <button class="btn btn-outline-primary d-flex align-items-center" routerLink="cart" routerLinkActive="active">
+        <span class="material-icons">shopping_cart</span>
         <span class="badge rounded-pill bg-danger text-white" *ngIf="cartArr?.length > 0">{{cartArr?.length}}</span>
       </button>
-      <button *ngIf="!token" class="btn btn-outline-primary" routerLink="/auth/login" routerLinkActive="active">Log in</button>
-      <button *ngIf="!token" class="btn btn-primary" routerLink="/auth/signup" routerLinkActive="active">Sign Up</button>
+      <button *ngIf="!token" class="btn btn-outline-primary" routerLink="/auth/login" routerLinkActive="active">Log in
+      </button>
+      <button *ngIf="!token" class="btn btn-primary" routerLink="/auth/signup" routerLinkActive="active">Sign Up
+      </button>
       <button [hidden]="!token" class="btn logo-btn rounded-circle" (click)="isMenu = true;" cdkOverlayOrigin
               #triggerNotification="cdkOverlayOrigin">{{userData?.fname?.charAt(0)}} {{userData?.lname?.charAt(0)}}</button>
     </div>
@@ -48,7 +53,8 @@
 >
   <div class="menu border border-1 shadow-sm py-2">
     <div class="d-flex align-items-center gap-3 px-2">
-      <button class="btn logo-btn logo-btn-lg rounded-circle">{{userData?.fname?.charAt(0)}} {{userData?.lname?.charAt(0)}}</button>
+      <button
+        class="btn logo-btn logo-btn-lg rounded-circle">{{userData?.fname?.charAt(0)}} {{userData?.lname?.charAt(0)}}</button>
       <div>
         <div>{{userData?.fname}} {{userData?.lname}}</div>
         <div class="small text-muted">{{userData?.email}}</div>
@@ -57,13 +63,17 @@
     <hr class="dropdown-divider">
     <div class="menu-item px-3 py-2" routerLink="/learning">My learning</div>
     <div class="menu-item px-3 py-2">My cart</div>
-    <div class="menu-item px-3 py-2" *ngIf="userData.role === 'ROLE_STUDENT'" routerLink="teacher" routerLinkActive="active">Teach with us</div>
-    <div class="menu-item px-3 py-2" *ngIf="userData.role !== 'ROLE_STUDENT'" routerLink="dashboard" routerLinkActive="active">Dashboard</div>
+    <div class="menu-item px-3 py-2" *ngIf="userData.role === 'ROLE_STUDENT'" routerLink="teacher"
+         routerLinkActive="active">Teach with us
+    </div>
+    <div class="menu-item px-3 py-2" *ngIf="userData.role !== 'ROLE_STUDENT'" routerLink="dashboard"
+         routerLinkActive="active">Dashboard
+    </div>
     <hr class="dropdown-divider">
     <div class="menu-item px-3 py-2" routerLink="settings/edit-account" routerLinkActive="active">Account Settings</div>
-    <div class="menu-item px-3 py-2">Purchase History</div>
+    <div class="menu-item px-3 py-2" routerLink="purchase-history" routerLinkActive="active">Purchase History</div>
     <hr class="dropdown-divider">
-    <div class="menu-item px-3 py-2" >Public profile</div>
+    <div class="menu-item px-3 py-2" [routerLink]="'user/'+userData?.username">Public profile</div>
     <div class="menu-item px-3 py-2" routerLink="settings/edit-profile" routerLinkActive="active">Edit profile</div>
     <hr class="dropdown-divider">
     <div class="menu-item px-3 py-2" (click)="logout()">Log out</div>

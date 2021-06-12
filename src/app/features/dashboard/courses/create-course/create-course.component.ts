@@ -24,6 +24,21 @@ export class CreateCourseComponent implements OnInit {
   imageChangedEvent: any;
   imgBase: string | undefined;
   private imgFile: File | undefined;
+  prices = [
+    {id: 1, price: 0},
+    {id: 1, price: 19.99},
+    {id: 1, price: 24.99},
+    {id: 1, price: 29.99},
+    {id: 1, price: 34.99},
+    {id: 1, price: 39.99},
+    {id: 1, price: 44.99},
+    {id: 1, price: 49.99},
+    {id: 1, price: 54.99},
+    {id: 1, price: 64.99},
+    {id: 1, price: 69.99},
+    {id: 1, price: 74.99},
+    {id: 1, price: 79.99},
+  ];
 
   constructor(private fb: FormBuilder, private courseService: CourseService,
               private bucket: BucketService, private router: Router, private route: ActivatedRoute) {
@@ -33,7 +48,8 @@ export class CreateCourseComponent implements OnInit {
       description: ['', Validators.required],
       imageUrl: [''],
       categoryId: ['', Validators.required],
-      levelId: ['', Validators.required]
+      levelId: ['', Validators.required],
+      price: [0, Validators.required]
     })
   }
 

@@ -50,6 +50,7 @@ export class EditCourseComponent implements OnInit {
     {id: 1, price: 79.99},
   ]
   publishForm: FormGroup;
+  isPublished = false;
 
   constructor(private _formBuilder: FormBuilder,
               private bucket: BucketService,
@@ -60,12 +61,14 @@ export class EditCourseComponent implements OnInit {
               private toastr: ToastrService) {
 
     this.courseForm = _formBuilder.group({
+      id: ['', Validators.required],
       title: ['', Validators.required],
       subtitle: ['', Validators.required],
       description: ['', Validators.required],
       imageUrl: [''],
       categoryId: ['', Validators.required],
-      levelId: ['', Validators.required]
+      levelId: ['', Validators.required],
+      price: [0, Validators.required]
     });
 
     this.publishForm = this._formBuilder.group({
@@ -160,16 +163,32 @@ export class EditCourseComponent implements OnInit {
   }
 
   async save() {
-    if (this.courseForm.valid) {
+    if (this.courseForm.valid && this.courseForm.dirty) {
       if (this.imgFile) {
         await this.bucket.uploadFile(this.imgFile, this.imgFile.name);
         this.courseForm.patchValue({imageUrl: this.imgFile.name})
       }
-      this.courseService.addCourse(this.courseForm.value).subscribe(value => {
-        this.router.navigate(['edit', value], {relativeTo: this.route.parent});
+      this.courseService.updateCourse(this.courseForm.value).subscribe(value => {
+        console.log(value);
       });
+    } else {
+      this.courseForm.markAllAsTouched();
     }
 
+  }
+
+  publish() {
+    if (!this.isPublished) {
+      this.courseService.publishCourse(this.id).subscribe(value => {
+        this.isPublished = true;
+        console.log(value);
+      })
+    } else {
+      this.courseService.unpublishCourse(this.id).subscribe(value => {
+        this.isPublished = false;
+        console.log(value);
+      })
+    }
   }
 
   deleteSection(section: any) {

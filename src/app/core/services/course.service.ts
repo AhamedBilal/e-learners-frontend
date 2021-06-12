@@ -39,8 +39,32 @@ export class CourseService {
     return this.http.get(environment.baseURI + `courses/${id}`);
   }
 
+  getCourseByIdGeneral(id: number): Observable<any> {
+    return this.http.get(environment.baseURI + `courses/general/${id}`);
+  }
+
+  getCourseByCategoryName(name: string): Observable<any> {
+    return this.http.get(environment.baseURI + `courses/category/${name}`);
+  }
+
+  searchCourse(title: string): Observable<any> {
+    return this.http.get(environment.baseURI + `courses/search/`, {params: {k: title}});
+  }
+
   updateCourse(data: any): Observable<any> {
     return this.http.put(environment.baseURI + 'courses', data);
+  }
+
+  publishCourse(id: number): Observable<any> {
+    return this.http.put(environment.baseURI + 'courses/publish', {id});
+  }
+
+  unpublishCourse(id: number): Observable<any> {
+    return this.http.put(environment.baseURI + 'courses/unpublish', {id});
+  }
+
+  checkValidity(courseId: number) {
+    return this.http.get(environment.baseURI + `courses/detail/${courseId}`);
   }
 
   addSection(data: any): Observable<any> {
@@ -82,4 +106,5 @@ export class CourseService {
   addOrder(id: number) {
     return this.http.post(environment.baseURI + 'order', {id});
   }
+
 }

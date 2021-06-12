@@ -15,6 +15,7 @@ export class NavBarComponent implements OnInit {
   userData: any;
   token: any;
   cartArr: any = [];
+  categories: any[] = [];
 
   constructor(private auth: AuthService, private userService: UserService, private data: DataService, private courseService: CourseService) {
   }
@@ -34,6 +35,7 @@ export class NavBarComponent implements OnInit {
       this.cartArr = value;
       console.log('cart', this.cartArr);
     });
+    this.getAllCategories();
   }
 
   getLoggedUserData() {
@@ -47,6 +49,13 @@ export class NavBarComponent implements OnInit {
      // @ts-ignore
       let cartAr = value?.courses?.map(item => item.id);
       this.data.changeCartData(cartAr);
+    })
+  }
+
+  getAllCategories() {
+    this.courseService.getAllCategories().subscribe(value => {
+      console.log(value);
+      this.categories = value;
     })
   }
 
